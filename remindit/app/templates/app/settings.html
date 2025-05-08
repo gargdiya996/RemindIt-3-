@@ -1,0 +1,304 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Settings | Remindit{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Settings Header -->
+    <div class="settings-header">
+        <div class="settings-title">
+            <h2>Settings</h2>
+            <p>Customize your Remindit experience</p>
+        </div>
+    </div>
+    
+    <!-- Settings Content -->
+    <div class="settings-container">
+        <div class="settings-sidebar">
+            <ul class="settings-nav">
+                <li class="active" data-tab="general"><i class="bi bi-sliders"></i> General</li>
+                <li data-tab="appearance"><i class="bi bi-palette"></i> Appearance</li>
+                <li data-tab="notifications"><i class="bi bi-bell"></i> Notifications</li>
+                <li data-tab="accessibility"><i class="bi bi-universal-access"></i> Accessibility</li>
+                <li data-tab="privacy"><i class="bi bi-shield-lock"></i> Privacy</li>
+            </ul>
+        </div>
+        
+        <div class="settings-content">
+            <!-- General Settings -->
+            <div class="settings-tab active" id="general-tab">
+                <h3>General Settings</h3>
+                
+                <form method="post" action="{% url 'settings' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="settings_tab" value="general">
+                    
+                    <div class="settings-section">
+                        <h4>Language</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="language" name="language">
+                                <option value="en" {% if user_settings.language == 'en' %}selected{% endif %}>English</option>
+                                <option value="es" {% if user_settings.language == 'es' %}selected{% endif %}>Spanish</option>
+                                <option value="fr" {% if user_settings.language == 'fr' %}selected{% endif %}>French</option>
+                                <option value="de" {% if user_settings.language == 'de' %}selected{% endif %}>German</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h4>Time Zone</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="timezone" name="timezone">
+                                <option value="utc-5" {% if user_settings.timezone == 'utc-5' %}selected{% endif %}>UTC-5 (Eastern Time)</option>
+                                <option value="utc-6" {% if user_settings.timezone == 'utc-6' %}selected{% endif %}>UTC-6 (Central Time)</option>
+                                <option value="utc-7" {% if user_settings.timezone == 'utc-7' %}selected{% endif %}>UTC-7 (Mountain Time)</option>
+                                <option value="utc-8" {% if user_settings.timezone == 'utc-8' %}selected{% endif %}>UTC-8 (Pacific Time)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Save General Settings</button>
+                </form>
+            </div>
+            
+            <!-- Appearance Settings -->
+            <div class="settings-tab" id="appearance-tab">
+                <h3>Appearance Settings</h3>
+                
+                <form method="post" action="{% url 'settings' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="settings_tab" value="appearance">
+                    
+                    <div class="settings-section">
+                        <h4>Theme</h4>
+                        <div class="theme-options">
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="dark" {% if user_settings.theme == 'dark' %}checked{% endif %}>
+                                <div class="theme-preview dark">
+                                    <div class="preview-header"></div>
+                                    <div class="preview-content">
+                                        <div class="preview-item"></div>
+                                        <div class="preview-item"></div>
+                                    </div>
+                                </div>
+                                <span>Dark</span>
+                            </label>
+                            
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="light" {% if user_settings.theme == 'light' %}checked{% endif %}>
+                                <div class="theme-preview light">
+                                    <div class="preview-header"></div>
+                                    <div class="preview-content">
+                                        <div class="preview-item"></div>
+                                        <div class="preview-item"></div>
+                                    </div>
+                                </div>
+                                <span>Light</span>
+                            </label>
+                            
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="system" {% if user_settings.theme == 'system' %}checked{% endif %}>
+                                <div class="theme-preview system">
+                                    <div class="preview-header"></div>
+                                    <div class="preview-content">
+                                        <div class="preview-item"></div>
+                                        <div class="preview-item"></div>
+                                    </div>
+                                </div>
+                                <span>System</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h4>Accent Color</h4>
+                        <div class="color-options">
+                            <label class="color-option">
+                                <input type="radio" name="accent_color" value="blue" {% if user_settings.accent_color == 'blue' %}checked{% endif %}>
+                                <span class="color-circle blue"></span>
+                            </label>
+                            
+                            <label class="color-option">
+                                <input type="radio" name="accent_color" value="purple" {% if user_settings.accent_color == 'purple' %}checked{% endif %}>
+                                <span class="color-circle purple"></span>
+                            </label>
+                            
+                            <label class="color-option">
+                                <input type="radio" name="accent_color" value="green" {% if user_settings.accent_color == 'green' %}checked{% endif %}>
+                                <span class="color-circle green"></span>
+                            </label>
+                            
+                            <label class="color-option">
+                                <input type="radio" name="accent_color" value="orange" {% if user_settings.accent_color == 'orange' %}checked{% endif %}>
+                                <span class="color-circle orange"></span>
+                            </label>
+                            
+                            <label class="color-option">
+                                <input type="radio" name="accent_color" value="pink" {% if user_settings.accent_color == 'pink' %}checked{% endif %}>
+                                <span class="color-circle pink"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Save Appearance Settings</button>
+                </form>
+            </div>
+            
+            <!-- Notifications Settings -->
+            <div class="settings-tab" id="notifications-tab">
+                <h3>Notification Settings</h3>
+                
+                <form method="post" action="{% url 'settings' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="settings_tab" value="notifications">
+                    
+                    <div class="settings-section">
+                        <div class="notification-option">
+                            <div class="notification-info">
+                                <h5>Email Notifications</h5>
+                                <p>Receive email notifications for important events</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="email_notifications" name="email_notifications" {% if user_settings.email_notifications %}checked{% endif %}>
+                            </div>
+                        </div>
+                        
+                        <div class="notification-option">
+                            <div class="notification-info">
+                                <h5>Push Notifications</h5>
+                                <p>Receive push notifications on your device</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="push_notifications" name="push_notifications" {% if user_settings.push_notifications %}checked{% endif %}>
+                            </div>
+                        </div>
+                        
+                        <div class="notification-option">
+                            <div class="notification-info">
+                                <h5>Reminder Notifications</h5>
+                                <p>Get notified before events start</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="reminder_notifications" name="reminder_notifications" {% if user_settings.reminder_notifications %}checked{% endif %}>
+                            </div>
+                        </div>
+                        
+                        <div class="notification-option">
+                            <div class="notification-info">
+                                <h5>Task Completion Notifications</h5>
+                                <p>Get notified when tasks are completed</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="task_completion_notifications" name="task_completion_notifications" {% if user_settings.task_completion_notifications %}checked{% endif %}>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Save Notification Settings</button>
+                </form>
+            </div>
+            
+            <!-- Accessibility Settings -->
+            <div class="settings-tab" id="accessibility-tab">
+                <h3>Accessibility Settings</h3>
+                
+                <form method="post" action="{% url 'settings' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="settings_tab" value="accessibility">
+                    
+                    <div class="settings-section">
+                        <h4>Text Size</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="text_size" name="text_size">
+                                <option value="small">Small</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-section">
+                        <h4>High Contrast Mode</h4>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="high_contrast_mode" name="high_contrast_mode">
+                            <label class="form-check-label" for="high_contrast_mode">Enable High Contrast</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Save Accessibility Settings</button>
+                </form>
+            </div>
+            
+            <!-- Privacy Settings -->
+            <div class="settings-tab" id="privacy-tab">
+                <h3>Privacy Settings</h3>
+                
+                <form method="post" action="{% url 'settings' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="settings_tab" value="privacy">
+                    
+                    <div class="settings-section">
+                        <div class="notification-option">
+                            <div class="notification-info">
+                                <h5>Data Collection</h5>
+                                <p>Allow us to collect usage data to improve your experience</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="data_collection" name="data_collection" checked>
+                            </div>
+                        </div>
+                        
+                        <div class="notification-option">
+                            <div class="notification-info">
+                                <h5>Show Profile to Others</h5>
+                                <p>Allow other users to see your profile information</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="show_profile" name="show_profile" checked>
+                            </div>
+                        </div>
+                        
+                        <div class="notification-option">
+                            <div class="notification-info">
+                                <h5>Third-Party Integrations</h5>
+                                <p>Allow third-party services to access your data</p>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="third_party_integrations" name="third_party_integrations">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Save Privacy Settings</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Settings tab navigation
+        const settingsTabs = document.querySelectorAll('.settings-nav li');
+        settingsTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                settingsTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Hide all tab content
+                document.querySelectorAll('.settings-tab').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Show selected tab content
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId + '-tab').classList.add('active');
+            });
+        });
+    });
+</script>
+{% endblock %}

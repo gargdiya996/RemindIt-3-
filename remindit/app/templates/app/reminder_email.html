@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .reminder-box {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h2>📅 Reminder: {{ title }}</h2>
+    <div class="reminder-box">
+        <p><strong>Date:</strong> {{ date }}</p>  <!-- Rendered as string -->
+        {% if description %}
+        <p><strong>Notes:</strong> {{ description }}</p>
+        {% endif %}
+    </div>
+    <p>Thank you for using RemindIt!</p>
+</body>
+</html>

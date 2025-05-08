@@ -1,0 +1,216 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Remindit | Smart Calendar & Task Management{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container-fluid">
+        <div class="hero-content">
+            <h1 class="hero-title">Organize Your Life with Remindit</h1>
+            <p class="hero-subtitle">The smart calendar app that helps you stay on top of your tasks, reminders, and notes all in one place.</p>
+            
+            <div class="hero-buttons">
+                <a href="{% url 'signup' %}" class="btn-primary">Get Started - It's Free</a>
+                <a href="#how-it-works" class="btn-outline">Learn More</a>
+            </div>
+            
+            <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80" alt="Remindit Calendar App" class="hero-image">
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container-fluid">
+        <h2 class="section-title">Why Choose Remindit?</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="bi bi-calendar-check"></i>
+                </div>
+                <h3 class="feature-title">Smart Calendar</h3>
+                <p class="feature-description">View your schedule in daily, weekly, or monthly formats. Easily add and manage events with our intuitive interface.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="bi bi-check2-all"></i>
+                </div>
+                <h3 class="feature-title">Task Management</h3>
+                <p class="feature-description">Create, organize, and prioritize tasks. Set due dates and track your progress with our powerful task management system.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="bi bi-bell"></i>
+                </div>
+                <h3 class="feature-title">Smart Reminders</h3>
+                <p class="feature-description">Never miss an important event again. Set customizable reminders for meetings, appointments, and deadlines.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="bi bi-sticky"></i>
+                </div>
+                <h3 class="feature-title">Quick Notes</h3>
+                <p class="feature-description">Capture ideas and information on the go. Keep your notes organized and easily accessible whenever you need them.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="bi bi-palette"></i>
+                </div>
+                <h3 class="feature-title">Customizable</h3>
+                <p class="feature-description">Personalize your experience with custom themes, color schemes, and layout options to match your preferences.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <h3 class="feature-title">Secure & Private</h3>
+                <p class="feature-description">Your data is protected with industry-standard security measures. We prioritize your privacy and data protection.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works-section" id="how-it-works">
+    <div class="container-fluid">
+        <h2 class="section-title">How Remindit Works</h2>
+        
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 class="step-title">Create Your Account</h3>
+                    <p class="step-description">Sign up for a free Remindit account in just a few seconds. No credit card required to get started with our basic plan.</p>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3 class="step-title">Add Your Events & Tasks</h3>
+                    <p class="step-description">Quickly add events, tasks, reminders, and notes to your calendar. Organize them by priority, category, or due date.</p>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3 class="step-title">Stay Organized</h3>
+                    <p class="step-description">View your schedule in different formats, receive timely reminders, and track your task completion to stay productive.</p>
+                </div>
+            </div>
+            
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3 class="step-title">Customize Your Experience</h3>
+                    <p class="step-description">Personalize your Remindit experience with themes, notification preferences, and display options to suit your workflow.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+    <div class="container-fluid">
+        <h2 class="section-title">What Our Users Say</h2>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">Remindit has completely transformed how I manage my busy schedule. The interface is intuitive and the task management features are exactly what I needed.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SJ</div>
+                    <div class="author-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Marketing Manager</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">As a freelancer juggling multiple projects, Remindit has been a game-changer. I love how I can organize tasks by priority and never miss a deadline.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">DT</div>
+                    <div class="author-info">
+                        <h4>David Thompson</h4>
+                        <p>Freelance Designer</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">The reminder feature is fantastic! I used to forget important appointments, but now Remindit keeps me on track. The customization options are also great.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">ML</div>
+                    <div class="author-info">
+                        <h4>Michelle Lee</h4>
+                        <p>Student</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container-fluid">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Get Organized?</h2>
+            <p class="cta-subtitle">Join thousands of users who have transformed their productivity with Remindit.</p>
+            <a href="{% url 'signup' %}" class="btn-primary">Create Your Free Account</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="bi bi-calendar-check-fill"></i>
+                <h2>Remindit</h2>
+            </div>
+            
+            <div class="footer-links">
+                <a href="{% url 'index' %}">Calendar</a>
+                <a href="{% url 'tasks' %}">Tasks</a>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </div>
+            
+            <div class="footer-social">
+                <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; {% now "Y" %} Remindit. All rights reserved.
+            </div>
+            
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}

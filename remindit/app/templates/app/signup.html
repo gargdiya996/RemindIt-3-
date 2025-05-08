@@ -1,0 +1,228 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Sign Up | Remindit{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-wrapper">
+        <div class="auth-content">
+            <div class="auth-header">
+                <div class="logo">
+                    <i class="bi bi-calendar-check-fill"></i>
+                    <h1>Remindit</h1>
+                </div>
+                <h2>Create an account</h2>
+                <p>Join Remindit to stay organized and productive</p>
+            </div>
+            
+            <form class="auth-form" method="post">
+                {% csrf_token %}
+                
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ field.label }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                
+                <div class="form-group">
+                    <label for="id_full_name">Full Name</label>
+                    <div class="input-group">
+                        <span class="input-icon"><i class="bi bi-person"></i></span>
+                        <input type="text" id="id_full_name" name="full_name" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_email">Email</label>
+                    <div class="input-group">
+                        <span class="input-icon"><i class="bi bi-envelope"></i></span>
+                        <input type="email" id="id_email" name="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_username">Username</label>
+                    <div class="input-group">
+                        <span class="input-icon"><i class="bi bi-person-badge"></i></span>
+                        <input type="text" id="id_username" name="username" class="form-control" placeholder="Choose a username" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_password1">Password</label>
+                    <div class="input-group">
+                        <span class="input-icon"><i class="bi bi-lock"></i></span>
+                        <input type="password" id="id_password1" name="password1" class="form-control" placeholder="Create a password" required>
+                        <button type="button" class="password-toggle" id="togglePassword1">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-meter">
+                            <span class="meter-segment"></span>
+                            <span class="meter-segment"></span>
+                            <span class="meter-segment"></span>
+                            <span class="meter-segment"></span>
+                        </div>
+                        <span class="strength-text">Password strength</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_password2">Confirm Password</label>
+                    <div class="input-group">
+                        <span class="input-icon"><i class="bi bi-lock"></i></span>
+                        <input type="password" id="id_password2" name="password2" class="form-control" placeholder="Confirm your password" required>
+                        <button type="button" class="password-toggle" id="togglePassword2">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-check">
+                    <input type="checkbox" id="agreeTerms" class="form-check-input" required>
+                    <label for="agreeTerms" class="form-check-label">
+                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-primary btn-block">Create Account</button>
+                
+                <div class="auth-divider">
+                    <span>or sign up with</span>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="btn-social google">
+                        <i class="bi bi-google"></i>
+                        <span>Google</span>
+                    </button>
+                    <button type="button" class="btn-social facebook">
+                        <i class="bi bi-facebook"></i>
+                        <span>Facebook</span>
+                    </button>
+                </div>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
+            </div>
+        </div>
+        
+        <div class="auth-image">
+            <div class="image-overlay"></div>
+            <div class="image-content">
+                <h2>Stay organized with Remindit</h2>
+                <p>The smart calendar app that helps you manage your tasks, reminders, and notes in one place.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Intuitive calendar interface</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Smart task management</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Customizable reminders</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Toggle password visibility
+        const togglePassword1 = document.getElementById('togglePassword1');
+        const passwordInput1 = document.getElementById('id_password1');
+        
+        if (togglePassword1 && passwordInput1) {
+            togglePassword1.addEventListener('click', function() {
+                const type = passwordInput1.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput1.setAttribute('type', type);
+                
+                // Toggle icon
+                this.querySelector('i').classList.toggle('bi-eye');
+                this.querySelector('i').classList.toggle('bi-eye-slash');
+            });
+        }
+        
+        const togglePassword2 = document.getElementById('togglePassword2');
+        const passwordInput2 = document.getElementById('id_password2');
+        
+        if (togglePassword2 && passwordInput2) {
+            togglePassword2.addEventListener('click', function() {
+                const type = passwordInput2.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput2.setAttribute('type', type);
+                
+                // Toggle icon
+                this.querySelector('i').classList.toggle('bi-eye');
+                this.querySelector('i').classList.toggle('bi-eye-slash');
+            });
+        }
+        
+        // Password strength meter
+        if (passwordInput1) {
+            passwordInput1.addEventListener('input', function() {
+                const password = this.value;
+                const meterSegments = document.querySelectorAll('.meter-segment');
+                const strengthText = document.querySelector('.strength-text');
+                
+                // Reset all segments
+                meterSegments.forEach(segment => {
+                    segment.className = 'meter-segment';
+                });
+
+                if (password.length === 0) {
+                    strengthText.textContent = 'Password strength';
+                    return;
+                }
+
+                let strength = 0;
+
+                // Length check
+                if (password.length >= 8) strength++;
+
+                // Uppercase check
+                if (/[A-Z]/.test(password)) strength++;
+
+                // Number check
+                if (/[0-9]/.test(password)) strength++;
+
+                // Special character check
+                if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+                // Update segments based on strength
+                for (let i = 0; i < strength; i++) {
+                    meterSegments[i].classList.add(
+                        strength === 1 ? 'weak' : 
+                        strength === 2 ? 'medium' : 
+                        strength === 3 ? 'good' : 'strong'
+                    );
+                }
+
+                // Update text
+                strengthText.textContent = 
+                    strength === 0 ? 'Very weak' : 
+                    strength === 1 ? 'Weak' : 
+                    strength === 2 ? 'Medium' : 
+                    strength === 3 ? 'Good' : 'Strong';
+            });
+        }
+    });
+</script>
+{% endblock %}
